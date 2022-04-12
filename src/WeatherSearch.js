@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import "./App.css";
 
-function App() {
+function WeatherSearch() {
   let [city, setCity] = useState("");
   let [weather, setWeather] = useState([]);
 
@@ -100,4 +100,4 @@ function App() {
   );
 }
 
-export default App;
+export default WeatherSearch;

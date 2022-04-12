@@ -1,8 +1,26 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
-import App from "./App";
+import WeatherSearch from "./WeatherSearch";
 import reportWebVitals from "./reportWebVitals";
+
+function App() {
+  return (
+    <div className="App">
+      <WeatherSearch />
+      <footer>
+        <a
+          href="https://github.com/mrsMacAlister/weather-react"
+          target="_blank"
+          rel="noreferrer"
+        >
+          Open-sourced
+        </a>{" "}
+        on GitHub, created by mrs.macAlister
+      </footer>
+    </div>
+  );
+}
 
 const rootElement = document.getElementById("root");
 const root = createRoot(rootElement);
