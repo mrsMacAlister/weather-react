@@ -1,27 +1,34 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "./App.css";
+import "./FormattedDate.js";
 
 function WeatherSearch(prop) {
-  const [ready, setReady] = useState(false);
   let [city, setCity] = useState("");
-  let [weather, setWeather] = useState([]);
+  let [weather, setWeather] = useState({ready: false});
 
   function displayWeather(response) {
     console.log(response.data);
     setWeather({
-      
+      ready: true,
       city: response.data.name,
+      country: response.data.sys.country,
+      time: new Date(response.data.dt*1000),
+      day: new Date(response.data.dt*1000),
       temperature: Math.round(response.data.main.temp),
       description: response.data.weather[0].main,
       humidity: response.data.main.humidity,
       wind: Math.round(response.data.wind.speed),
       icon: `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`,
     });
-    setReady(true);
   }
 
-  if(ready) {
+  function updateCity(event) {
+    setCity(event.target.value);
+    console.log(event.target.value);
+  }
+
+  if(weather.ready) {
     return (
       <div className="Weather">
         <div className="container">
@@ -73,7 +80,7 @@ function WeatherSearch(prop) {
                 </h2>
                 <ul id="weather-description">
                   <li>
-                    Weather: <span id="sky">{weather.description}</span>
+                    Weather: <span id="sky" className="text-capitalize">{weather.description}</span>
                   </li>
                   <li>
                     Humidity: <span id="humidity">{weather.humidity}</span>%
@@ -88,8 +95,11 @@ function WeatherSearch(prop) {
                 <h2>{weather.city}</h2>
                 <ul id="time-date">
                   <li id="country">{weather.country}</li>
-                  <li id="time">{weather.time}</li>
-                  <li id="day">{weather.day}</li>
+                  <li id="time">
+                    <FormattedDate time={weather.time} />
+                    </li>
+                  <li id="day">
+                    <FormattedDate day={weather.day} /></li>
                 </ul>
               </div>
             </div>
@@ -107,10 +117,7 @@ function WeatherSearch(prop) {
 }
   //https://api.openweathermap.org/data/2.5/weather?q=Monaco&appid=4c09ae07987b07a4993b3f7e761af71d&units=metric`;
 
-  function updateCity(event) {
-    setCity(event.target.value);
-    console.log(event.target.value);
-  }
+ 
 
   
 }
