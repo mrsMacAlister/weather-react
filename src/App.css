@@ -39,7 +39,8 @@
 
 .App,
 .Form,
-.Info {
+.Info, 
+.WeatherSearch {
   font-family: monospace, "Courier New", Courier;
   color: rgba(0, 0, 0, 0.8);
 }

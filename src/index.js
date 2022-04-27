@@ -7,7 +7,7 @@ import reportWebVitals from "./reportWebVitals";
 function App() {
   return (
     <div className="App">
-      <WeatherSearch />
+      <WeatherSearch defaultCity="Monaco" />
       <footer>
         <a
           href="https://github.com/mrsMacAlister/weather-react"
